@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/usr/local/bin/dumb-init /bin/bash
 set -e
 
-# Setting up the proper database
-if [ -n "$DATABASE" ]; then
-  echo -e '\ndatabase: "'$DATABASE'"' >> /etc/kong/kong.yml
-fi
+# Disabling nginx daemon mode
+export KONG_NGINX_DAEMON="off"
+
+[ -z "$KONG_NGINX_DAEMON" ] && export KONG_NGINX_DAEMON="off"
 
 # Setting up the proper database
 if [ -n "$KONG_CONFIG" ]; then
