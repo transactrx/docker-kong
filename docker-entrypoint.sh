@@ -8,7 +8,10 @@ fi
 
 # Setting up the proper database
 if [ -n "$KONG_CONFIG" ]; then
-  echo -e $DATABASE|base64 --decode > /etc/kong/kong.yml
+  echo -e $KONG_CONFIG|base64 --decode > /etc/kong/kong.yml
+
+  echo "using this configuration:"
+  cat  /etc/kong/kong.yml
 fi
 
 exec "$@"
